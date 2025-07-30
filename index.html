@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>سینا سهرابی | سایت شخصی</title>
+    <title>Sina Sohrabi | سایت شخصی</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- فونت فارسی و آیکون‌ها -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
@@ -10,32 +10,12 @@
     <style>
         body {
             font-family: 'Vazirmatn', sans-serif;
-            background: linear-gradient(135deg,#e0e7ff 0%,#f9fafb 100%);
+            background: radial-gradient(circle at 70% 20%, #818cf8 0%, #e0e7ff 60%, #f9fafb 100%);
             color: #222;
             direction: rtl;
             min-height: 100vh;
             margin: 0;
-        }
-        .glass {
-            background: rgba(255,255,255,0.85);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(99,102,241,0.12);
-            backdrop-filter: blur(6px);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: box-shadow 0.2s;
-        }
-        .glass:hover {
-            box-shadow: 0 16px 40px rgba(99,102,241,0.18);
-        }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #6366f1;
-            box-shadow: 0 4px 16px #6366f133;
-            margin-bottom: 1rem;
+            overflow-x: hidden;
         }
         .header-bg {
             background: linear-gradient(90deg,#6366f1 60%,#818cf8 100%);
@@ -45,22 +25,60 @@
             text-align: center;
             margin-bottom: 2rem;
             box-shadow: 0 8px 32px #6366f133;
+            position: relative;
         }
-        .resume-btn {
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 16px #6366f133;
+            margin-bottom: 1rem;
             background: #fff;
-            color: #6366f1;
-            border-radius: 12px;
-            padding: 0.7rem 2rem;
-            font-weight: bold;
-            box-shadow: 0 2px 8px #6366f133;
-            border: none;
-            margin-top: 1rem;
-            transition: background 0.2s, color 0.2s;
-            cursor: pointer;
         }
-        .resume-btn:hover {
-            background: #6366f1;
+        .header-bg h1 {
+            font-size:2.3rem;
+            font-weight:bold;
+            margin-bottom:0.5rem;
+            letter-spacing: 2px;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .header-bg .en-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1px;
             color: #fff;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .header-bg .wave {
+            font-size:2.5rem;
+            position: absolute;
+            left: 2rem;
+            top: 2rem;
+            animation: wave 2s infinite;
+        }
+        @keyframes wave {
+            0% { transform: rotate(0deg);}
+            20% { transform: rotate(20deg);}
+            40% { transform: rotate(-10deg);}
+            60% { transform: rotate(20deg);}
+            80% { transform: rotate(-5deg);}
+            100% { transform: rotate(0deg);}
+        }
+        .glass {
+            background: rgba(255,255,255,0.85);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(99,102,241,0.12);
+            backdrop-filter: blur(6px);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s;
+            position: relative;
+        }
+        .glass:hover {
+            box-shadow: 0 16px 40px rgba(99,102,241,0.18);
         }
         .skills-list {
             display: flex;
@@ -77,27 +95,56 @@
             align-items: center;
             gap: 0.5rem;
             box-shadow: 0 2px 8px #6366f133;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.2s;
+            cursor: pointer;
         }
         .skill-item:hover {
             background: #6366f1;
             color: #fff;
+            transform: scale(1.07) rotate(-2deg);
         }
         .contact-list {
             display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
             margin-top: 1rem;
         }
-        .contact-list a {
+        .contact-glass {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px #6366f133;
+            padding: 0.8rem 1.5rem;
+            font-weight: bold;
             color: #6366f1;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.2s;
+            font-size: 1.1rem;
+            transition: 
+                background 0.3s,
+                color 0.3s,
+                transform 0.2s,
+                box-shadow 0.3s;
+            border: 2px solid #eef2ff;
+            backdrop-filter: blur(2px);
+            margin-bottom: 0.5rem;
+            position: relative;
         }
-        .contact-list a:hover {
-            color: #4338ca;
-            text-decoration: underline;
+        .contact-glass:hover {
+            background: linear-gradient(90deg,#6366f1 40%,#818cf8 100%);
+            color: #fff;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 32px #6366f1aa;
+        }
+        .contact-glass i {
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+        .contact-glass:hover i {
+            color: #fff;
         }
         blockquote {
             border-right: 4px solid #6366f1;
@@ -107,6 +154,28 @@
             font-style: italic;
             background: #f2f5fe;
             border-radius: 10px;
+        }
+        .fun-fact {
+            background: linear-gradient(90deg,#818cf8 10%,#e0e7ff 100%);
+            color: #4338ca;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0 2rem 0;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 12px #6366f133;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: bold;
+            animation: fadeIn 1.2s;
+        }
+        .fun-fact i {
+            font-size: 1.5rem;
+            color: #6366f1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
         }
         footer {
             text-align: center;
@@ -122,18 +191,19 @@
             .glass { padding: 1rem; }
             .header-bg { padding: 1.5rem 0 1rem 0; }
             .profile-img { width: 80px; height: 80px; }
+            .fun-fact { font-size: 0.95rem; padding: 0.7rem 1rem;}
         }
     </style>
 </head>
 <body>
 
-    <!-- هدر جدید با بک‌گراند -->
+    <!-- هدر جدید با بک‌گراند و اسم انگلیسی -->
     <div class="header-bg">
-        <img src="https://avatars.githubusercontent.com/u/11111111?v=4" alt="سینا سهرابی" class="profile-img">
-        <h1 style="font-size:2.3rem;font-weight:bold;margin-bottom:0.5rem;">سینا سهرابی</h1>
+        <span class="wave">👋</span>
+        <img src="https://avatars.githubusercontent.com/u/11111111?v=4" alt="Sina Sohrabi" class="profile-img">
+        <span class="en-name">Sina Sohrabi</span>
+        <h1>سینا سهرابی</h1>
         <span style="font-size:1.1rem;">دانشجوی ریاضیات و کاربردها | طراح وب</span>
-        <br>
-        <a href="resume.pdf" download class="resume-btn"><i class="bi bi-download"></i> دانلود رزومه</a>
     </div>
 
     <!-- معرفی -->
@@ -141,10 +211,15 @@
         <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">👋 سلام!</h2>
         <p>من <span style="color:#6366f1;font-weight:bold;">سینا سهرابی</span> هستم.</p>
         <p style="color:#555;">
-            دانشجوی ریاضیات و کاربردها در دانشگاه مازندران<br>
-            علاقه‌مند به دنیای وب، طراحی، تکنولوژی و یادگیری مداوم.
+            علاقه‌مند به دنیای وب و تکنولوژی
         </p>
     </section>
+
+    <!-- فکت جالب -->
+    <div class="fun-fact">
+        <i class="bi bi-lightbulb"></i>
+        <span>جالب بدونی: عدد پی تا 100 تریلیون رقم محاسبه شده!</span>
+    </div>
 
     <!-- مهارت‌ها با آیکون و افکت -->
     <section class="glass">
@@ -155,28 +230,29 @@
             <div class="skill-item"><i class="bi bi-git"></i> Git و GitHub</div>
             <div class="skill-item"><i class="bi bi-windows"></i> کار با ویندوز و نرم‌افزارهای کاربردی</div>
             <div class="skill-item"><i class="bi bi-image"></i> فتوشاپ مقدماتی</div>
-            <div class="skill-item"><i class="bi bi-translate"></i> زبان انگلیسی در حد خوب</div>
         </div>
     </section>
 
-    <!-- هدف -->
-    <section class="glass">
-        <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">🎯 هدف من</h2>
-        <p style="color:#555;">
-            در مسیر تبدیل شدن به یک طراح وب حرفه‌ای هستم.<br>
-            دنبال پیشرفت روزانه‌ام و همیشه سعی می‌کنم چیزهای جدید یاد بگیرم.<br>
-            سایت شخصی من قدم اولمه!
-        </p>
-    </section>
-
-    <!-- راه‌های ارتباطی با آیکون -->
+    <!-- راه‌های ارتباطی با آیکون و افکت شیشه‌ای -->
     <section class="glass">
         <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">📌 راه‌های ارتباطی</h2>
         <div class="contact-list">
-            <span><i class="bi bi-envelope"></i> ایمیل: <a href="mailto:khodewsinaw@gmail.com">khodewsinaw@gmail.com</a></span>
-            <span><i class="bi bi-github"></i> گیت‌هاب: <a href="https://github.com/khodewsinaw" target="_blank">github.com/khodewsinaw</a></span>
-            <span><i class="bi bi-instagram"></i> اینستاگرام: <a href="https://instagram.com/sinaa.sohrabi" target="_blank">@sinaa.sohrabi</a></span>
-            <span><i class="bi bi-telegram"></i> تلگرام: <a href="https://t.me/khodewsinaw" target="_blank">@khodewsinaw</a></span>
+            <a href="mailto:khodewsinaw@gmail.com" target="_blank" class="contact-glass">
+                <i class="bi bi-envelope"></i>
+                <span>ایمیل</span>
+            </a>
+            <a href="https://github.com/khodewsinaw" target="_blank" class="contact-glass">
+                <i class="bi bi-github"></i>
+                <span>گیت‌هاب</span>
+            </a>
+            <a href="https://instagram.com/sinaa.sohrabi" target="_blank" class="contact-glass">
+                <i class="bi bi-instagram"></i>
+                <span>اینستاگرام</span>
+            </a>
+            <a href="https://t.me/khodewsinaw" target="_blank" class="contact-glass">
+                <i class="bi bi-telegram"></i>
+                <span>تلگرام</span>
+            </a>
         </div>
     </section>
 
@@ -184,16 +260,15 @@
     <section class="glass">
         <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">🧠 نقل‌قول مورد علاقه‌م:</h2>
         <blockquote>
-            «آروم پیش برو، ولی هیچ‌وقت وای نستا.»
+            «تقدیر این بوده، نه دست من نیست»
         </blockquote>
     </section>
 
-    <!-- فوتر جدید -->
+    <!-- فوتر -->
     <footer>
-        © 2025 سینا سهرابی | همه حقوق محفوظ است
+        © 2025 Khodewsinaw | همه حقوق محفوظ است
     </footer>
 
 </body>
 </html>
-
 

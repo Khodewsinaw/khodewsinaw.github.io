@@ -16,6 +16,21 @@
             min-height: 100vh;
             margin: 0;
             overflow-x: hidden;
+            transition: background 0.7s, color 0.7s;
+        }
+        body.dark {
+            background: radial-gradient(circle at 70% 20%, #1e293b 0%, #334155 60%, #0f172a 100%);
+            color: #e0e7ff;
+        }
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.18;
+            background-size: 400px 400px;
+            will-change: background-position;
+            transition: opacity 0.5s;
         }
         .header-bg {
             background: linear-gradient(90deg,#6366f1 60%,#818cf8 100%);
@@ -26,6 +41,15 @@
             margin-bottom: 2rem;
             box-shadow: 0 8px 32px #6366f133;
             position: relative;
+            animation: fadeInDown 1.2s;
+        }
+        body.dark .header-bg {
+            background: linear-gradient(90deg,#334155 60%,#6366f1 100%);
+            color: #e0e7ff;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px);}
+            to { opacity: 1; transform: translateY(0);}
         }
         .profile-img {
             width: 120px;
@@ -36,6 +60,10 @@
             box-shadow: 0 4px 16px #6366f133;
             margin-bottom: 1rem;
             background: #fff;
+            transition: transform 0.3s;
+        }
+        .profile-img:hover {
+            transform: scale(1.07) rotate(-3deg);
         }
         .header-bg h1 {
             font-size:2.3rem;
@@ -43,6 +71,7 @@
             margin-bottom:0.5rem;
             letter-spacing: 2px;
             font-family: 'Vazirmatn', sans-serif;
+            text-shadow: 0 2px 8px #6366f155;
         }
         .header-bg .en-name {
             font-size: 1.4rem;
@@ -51,6 +80,7 @@
             color: #fff;
             margin-bottom: 0.5rem;
             display: block;
+            text-shadow: 0 2px 8px #6366f155;
         }
         .header-bg .wave {
             font-size:2.5rem;
@@ -67,6 +97,25 @@
             80% { transform: rotate(-5deg);}
             100% { transform: rotate(0deg);}
         }
+        .theme-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: #fff;
+            color: #6366f1;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 8px #6366f133;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark .theme-toggle {
+            background: #334155;
+            color: #facc15;
+        }
         .glass {
             background: rgba(255,255,255,0.85);
             border-radius: 24px;
@@ -74,11 +123,26 @@
             backdrop-filter: blur(6px);
             padding: 2rem;
             margin-bottom: 2rem;
-            transition: box-shadow 0.2s;
+            transition: box-shadow 0.2s, transform 0.2s, background 0.5s;
             position: relative;
+            animation: fadeIn 1.2s;
+        }
+        body.dark .glass {
+            background: rgba(30,41,59,0.85);
+            box-shadow: 0 8px 32px #6366f133;
+        }
+        .glass[data-animate] {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .glass[data-animate].visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         .glass:hover {
             box-shadow: 0 16px 40px rgba(99,102,241,0.18);
+            transform: scale(1.02);
         }
         .skills-list {
             display: flex;
@@ -87,7 +151,7 @@
             margin-top: 1rem;
         }
         .skill-item {
-            background: #eef2ff;
+            background: linear-gradient(90deg,#eef2ff 60%,#e0e7ff 100%);
             border-radius: 10px;
             padding: 0.7rem 1.2rem;
             font-size: 1rem;
@@ -98,10 +162,14 @@
             transition: background 0.2s, transform 0.2s;
             cursor: pointer;
         }
-        .skill-item:hover {
-            background: #6366f1;
+        body.dark .skill-item {
+            background: linear-gradient(90deg,#334155 60%,#6366f1 100%);
             color: #fff;
-            transform: scale(1.07) rotate(-2deg);
+        }
+        .skill-item:hover {
+            background: linear-gradient(90deg,#6366f1 60%,#818cf8 100%);
+            color: #fff;
+            transform: scale(1.08) rotate(-2deg);
         }
         .contact-list {
             display: flex;
@@ -133,6 +201,11 @@
             margin-bottom: 0.5rem;
             position: relative;
         }
+        body.dark .contact-glass {
+            background: rgba(30,41,59,0.7);
+            color: #facc15;
+            border: 2px solid #334155;
+        }
         .contact-glass:hover {
             background: linear-gradient(90deg,#6366f1 40%,#818cf8 100%);
             color: #fff;
@@ -154,6 +227,12 @@
             font-style: italic;
             background: #f2f5fe;
             border-radius: 10px;
+            animation: fadeIn 1.7s;
+        }
+        body.dark blockquote {
+            background: #334155;
+            color: #facc15;
+            border-right: 4px solid #facc15;
         }
         .fun-fact {
             background: linear-gradient(90deg,#818cf8 10%,#e0e7ff 100%);
@@ -169,9 +248,56 @@
             font-weight: bold;
             animation: fadeIn 1.2s;
         }
+        body.dark .fun-fact {
+            background: linear-gradient(90deg,#334155 10%,#6366f1 100%);
+            color: #facc15;
+        }
         .fun-fact i {
             font-size: 1.5rem;
             color: #6366f1;
+        }
+        body.dark .fun-fact i {
+            color: #facc15;
+        }
+        /* ترمینال نمایشی */
+        .terminal {
+            background: #1e293b;
+            color: #38bdf8;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px #6366f133;
+            padding: 1.5rem 1rem;
+            margin: 2rem auto 2rem auto;
+            max-width: 500px;
+            font-size: 1.08rem;
+            position: relative;
+            animation: fadeIn 1.5s;
+        }
+        .terminal-bar {
+            position: absolute;
+            top: 0.7rem;
+            left: 1rem;
+            display: flex;
+            gap: 6px;
+        }
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot-red {background: #ef4444;}
+        .dot-yellow {background: #facc15;}
+        .dot-green {background: #22c55e;}
+        .terminal-content {
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+        .terminal-cmd {
+            color: #a5b4fc;
+        }
+        .terminal-output {
+            color: #38bdf8;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px);}
@@ -187,63 +313,100 @@
             border-radius: 16px 16px 0 0;
             box-shadow: 0 -2px 16px #6366f133;
         }
+        body.dark footer {
+            background: #334155;
+            color: #facc15;
+        }
         @media (max-width: 600px) {
             .glass { padding: 1rem; }
             .header-bg { padding: 1.5rem 0 1rem 0; }
             .profile-img { width: 80px; height: 80px; }
             .fun-fact { font-size: 0.95rem; padding: 0.7rem 1rem;}
+            .terminal { font-size: 0.95rem; padding: 1rem 0.5rem;}
+            .theme-toggle { right: 1rem; top: 1rem;}
+        }
+        /* افکت تایپ */
+        .typed-text {
+            display: inline-block;
+            border-left: 2px solid #6366f1;
+            padding-left: 6px;
+            animation: blink 1s infinite;
+            font-weight: bold;
+            color: #6366f1;
+            font-size: 1.15rem;
+        }
+        @keyframes blink {
+            0%,100% { border-color: #6366f1; }
+            50% { border-color: transparent; }
+        }
+        body.dark .typed-text {
+            color: #facc15;
+            border-left: 2px solid #facc15;
         }
     </style>
 </head>
 <body>
-
+    <div class="parallax-bg"></div>
     <!-- هدر جدید با بک‌گراند و اسم انگلیسی -->
-    <div class="header-bg">
+    <div class="header-bg" data-animate>
+        <button class="theme-toggle" id="themeBtn" title="تغییر حالت شب/روز"><i class="bi bi-moon-stars"></i></button>
         <span class="wave">👋</span>
         <img src="https://avatars.githubusercontent.com/u/11111111?v=4" alt="Sina Sohrabi" class="profile-img">
         <span class="en-name">Sina Sohrabi</span>
-        <h1>سینا سهرابی</h1>
+        <h1>Sina Sohrabi</h1>
         <span style="font-size:1.1rem;">دانشجوی ریاضیات و کاربردها | طراح وب</span>
     </div>
 
     <!-- معرفی -->
-    <section class="glass">
+    <section class="glass" data-animate>
         <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">👋 سلام!</h2>
-        <p>من <span style="color:#6366f1;font-weight:bold;">سینا سهرابی</span> هستم.</p>
+        <p>من <span style="color:#6366f1;font-weight:bold;">Sina Sohrabi</span> هستم.</p>
         <p style="color:#555;">
-            علاقه‌مند به دنیای وب و تکنولوژی
+            <span id="typed" class="typed-text"></span>
         </p>
     </section>
 
     <!-- فکت جالب -->
-    <div class="fun-fact">
+    <div class="fun-fact" data-animate>
         <i class="bi bi-lightbulb"></i>
         <span>جالب بدونی: عدد پی تا 100 تریلیون رقم محاسبه شده!</span>
     </div>
 
+    <!-- ترمینال نمایشی -->
+    <div class="terminal" data-animate>
+        <div class="terminal-bar">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+        </div>
+        <div class="terminal-content">
+            <span class="terminal-cmd">&gt; echo "Hello, Sina!"</span><br>
+            <span class="terminal-output">Hello, Sina!</span><br>
+            <span class="terminal-cmd">&gt; whoami</span><br>
+            <span class="terminal-output">khodewsinaw</span><br>
+            <span class="terminal-cmd">&gt; uptime</span><br>
+            <span class="terminal-output">Online: 365 days</span>
+        </div>
+    </div>
+
     <!-- مهارت‌ها با آیکون و افکت -->
-    <section class="glass">
+    <section class="glass" data-animate>
         <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">💼 مهارت‌ها</h2>
         <div class="skills-list">
             <div class="skill-item"><i class="bi bi-filetype-html"></i> HTML و CSS</div>
             <div class="skill-item"><i class="bi bi-palette"></i> طراحی ساده سایت</div>
-            <div class="skill-item"><i class="bi bi-git"></i> Git و GitHub</div>
             <div class="skill-item"><i class="bi bi-windows"></i> کار با ویندوز و نرم‌افزارهای کاربردی</div>
             <div class="skill-item"><i class="bi bi-image"></i> فتوشاپ مقدماتی</div>
         </div>
     </section>
 
     <!-- راه‌های ارتباطی با آیکون و افکت شیشه‌ای -->
-    <section class="glass">
+    <section class="glass" data-animate>
         <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">📌 راه‌های ارتباطی</h2>
         <div class="contact-list">
             <a href="mailto:khodewsinaw@gmail.com" target="_blank" class="contact-glass">
                 <i class="bi bi-envelope"></i>
                 <span>ایمیل</span>
-            </a>
-            <a href="https://github.com/khodewsinaw" target="_blank" class="contact-glass">
-                <i class="bi bi-github"></i>
-                <span>گیت‌هاب</span>
             </a>
             <a href="https://instagram.com/sinaa.sohrabi" target="_blank" class="contact-glass">
                 <i class="bi bi-instagram"></i>
@@ -257,7 +420,7 @@
     </section>
 
     <!-- نقل‌قول مورد علاقه -->
-    <section class="glass">
+    <section class="glass" data-animate>
         <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">🧠 نقل‌قول مورد علاقه‌م:</h2>
         <blockquote>
             «تقدیر این بوده، نه دست من نیست»
@@ -268,6 +431,69 @@
     <footer>
         © 2025 Khodewsinaw | همه حقوق محفوظ است
     </footer>
+
+    <script>
+    // تایپ انیمیشنی
+    const typedText = [
+        "علاقه‌مند به دنیای وب و تکنولوژی",
+        "دنبال یادگیری چیزهای جدید",
+        "دوست‌دار خلاقیت و نوآوری"
+    ];
+    let typedIndex = 0, charIndex = 0, typing = true;
+    const typedElem = document.getElementById('typed');
+    function typeEffect() {
+        if (typedIndex >= typedText.length) typedIndex = 0;
+        let current = typedText[typedIndex];
+        if (typing) {
+            if (charIndex < current.length) {
+                typedElem.textContent = current.slice(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeEffect, 60);
+            } else {
+                typing = false;
+                setTimeout(typeEffect, 1200);
+            }
+        } else {
+            if (charIndex > 0) {
+                typedElem.textContent = current.slice(0, charIndex - 1);
+                charIndex--;
+                setTimeout(typeEffect, 30);
+            } else {
+                typing = true;
+                typedIndex++;
+                setTimeout(typeEffect, 400);
+            }
+        }
+    }
+    typeEffect();
+
+    // حالت شب و روز
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        themeBtn.innerHTML = document.body.classList.contains('dark') ? '<i class="bi bi-brightness-high"></i>' : '<i class="bi bi-moon-stars"></i>';
+    });
+
+    // افکت پارالاکس
+    window.addEventListener('scroll', function() {
+        const y = window.scrollY;
+        document.querySelector('.parallax-bg').style.backgroundPosition = `0px ${y * 0.3}px`;
+    });
+
+    // انیمیشن ورود بخش‌ها
+    function animateSections() {
+        document.querySelectorAll('[data-animate]').forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) {
+                sec.classList.add('visible');
+            }
+        });
+    }
+    window.addEventListener('scroll', animateSections);
+    window.addEventListener('load', animateSections);
+    </script>
+</body>
+</html>
 
 </body>
 </html>

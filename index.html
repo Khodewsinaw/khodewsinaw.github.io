@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Sina Sohrabi | سایت شخصی</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- فونت فارسی و آیکون‌ها -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <style>
@@ -139,7 +138,6 @@
             border: 1.5px solid #facc15;
             box-shadow: 0 4px 24px #facc1555;
         }
-        /* آیکون شب و روز */
         .theme-toggle .icon-moon,
         .theme-toggle .icon-sun {
             font-size: 1.6rem;
@@ -162,7 +160,6 @@
             opacity: 1;
             transform: scale(1) rotate(0deg);
         }
-        /* آیکون ترنسلیت */
         .lang-toggle .icon-translate {
             font-size: 1.5rem;
             color: #6366f1;
@@ -283,7 +280,6 @@
             object-fit: contain;
             margin-left: 0.1rem;
         }
-        /* رنگی کردن آیکون‌ها */
         .contact-glass .bi-instagram {
             color: #E4405F;
         }
@@ -440,7 +436,6 @@
         <span style="font-size:1.1rem;" id="header-desc">دانشجوی ریاضیات و کاربردها | طراح وب</span>
     </div>
 
-    <!-- معرفی -->
     <section class="glass" data-animate>
         <h2 id="hello-title" style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">👋 سلام!</h2>
         <p id="hello-desc">من <span style="color:#6366f1;font-weight:bold;">Sina Sohrabi</span> هستم.</p>
@@ -449,13 +444,11 @@
         </p>
     </section>
 
-    <!-- فکت جالب -->
     <div class="fun-fact" data-animate>
         <i class="bi bi-lightbulb"></i>
         <span id="fun-fact-text">جالب بدونی: عدد پی تا 100 تریلیون رقم محاسبه شده!</span>
     </div>
 
-    <!-- ترمینال نمایشی -->
     <div class="terminal" data-animate>
         <div class="terminal-bar">
             <span class="terminal-dot dot-red"></span>
@@ -472,7 +465,6 @@
         </div>
     </div>
 
-    <!-- مهارت‌ها با آیکون و افکت -->
     <section class="glass" data-animate>
         <h2 id="skills-title" style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">💼 مهارت‌ها</h2>
         <div class="skills-list" id="skills-list">
@@ -483,7 +475,6 @@
         </div>
     </section>
 
-    <!-- علایق -->
     <section class="glass" data-animate>
         <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">🎯 علایق</h2>
         <ul style="font-size:1.1rem; margin:0; padding-right:1.2rem;">
@@ -491,7 +482,6 @@
         </ul>
     </section>
 
-    <!-- راه‌های ارتباطی با آیکون و افکت شیشه‌ای -->
     <section class="glass" data-animate>
         <h2 id="contact-title" style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">📌 راه‌های ارتباطی</h2>
         <div class="contact-list" id="contact-list">
@@ -510,7 +500,6 @@
         </div>
     </section>
 
-    <!-- نقل‌قول مورد علاقه -->
     <section class="glass" data-animate>
         <h2 id="quote-title" style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">🧠 نقل‌قول مورد علاقه‌م:</h2>
         <blockquote id="quote-block">
@@ -518,13 +507,11 @@
         </blockquote>
     </section>
 
-    <!-- فوتر -->
     <footer id="footer">
         © 2025 Khodewsinaw | همه حقوق محفوظ است
     </footer>
 
     <script>
-    // تایپ انیمیشنی
     const typedText = [
         "علاقه‌مند به دنیای وب و تکنولوژی",
         "دنبال یادگیری چیزهای جدید",
@@ -558,19 +545,16 @@
     }
     typeEffect();
 
-    // حالت شب و روز با آیکون تمیز و انیمیشن
     const themeBtn = document.getElementById('themeBtn');
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark');
     });
 
-    // افکت پارالاکس
     window.addEventListener('scroll', function() {
         const y = window.scrollY;
         document.querySelector('.parallax-bg').style.backgroundPosition = `0px ${y * 0.3}px`;
     });
 
-    // انیمیشن ورود بخش‌ها
     function animateSections() {
         document.querySelectorAll('[data-animate]').forEach(sec => {
             const rect = sec.getBoundingClientRect();
@@ -582,7 +566,6 @@
     window.addEventListener('scroll', animateSections);
     window.addEventListener('load', animateSections);
 
-    // فکت جالب متغیر و تغییر هر 10 ثانیه
     const funFacts = [
         "عدد پی تا 100 تریلیون رقم محاسبه شده!",
         "اولین وب‌سایت دنیا هنوز آنلاین است.",
@@ -607,7 +590,6 @@
         funFactElem.textContent = "جالب بدونی: " + funFacts[funFactIndex];
     }, 10000);
 
-    // دکمه تغییر زبان
     const langBtn = document.getElementById('langBtn');
     let isEnglish = false;
     langBtn.addEventListener('click', () => {
@@ -625,14 +607,12 @@
             document.getElementById('quote-title').textContent = "🧠 My Favorite Quote:";
             document.getElementById('quote-block').textContent = '"Destiny was like this, it was not in my hands."';
             document.getElementById('footer').textContent = "© 2025 Khodewsinaw | All rights reserved";
-            // Skills
             document.getElementById('skills-list').innerHTML = `
                 <div class="skill-item"><i class="bi bi-filetype-html"></i> HTML & CSS</div>
                 <div class="skill-item"><i class="bi bi-palette"></i> Simple Web Design</div>
                 <div class="skill-item"><i class="bi bi-windows"></i> Windows & Apps</div>
                 <div class="skill-item"><i class="bi bi-image"></i> Basic Photoshop</div>
             `;
-            // Contacts
             document.getElementById('contact-list').innerHTML = `
                 <a href="mailto:khodewsinaw@gmail.com" target="_blank" class="contact-glass">
                     <i class="bi bi-envelope"></i>
@@ -647,7 +627,6 @@
                     <span>Telegram</span>
                 </a>
             `;
-            // Fun fact
             funFactElem.textContent = "Did you know: " + funFacts[funFactIndex];
         } else {
             document.documentElement.lang = "fa";
@@ -662,14 +641,12 @@
             document.getElementById('quote-title').textContent = "🧠 نقل‌قول مورد علاقه‌م:";
             document.getElementById('quote-block').textContent = "«تقدیر این بوده، نه دست من نیست»";
             document.getElementById('footer').textContent = "© 2025 Khodewsinaw | همه حقوق محفوظ است";
-            // Skills
             document.getElementById('skills-list').innerHTML = `
                 <div class="skill-item"><i class="bi bi-filetype-html"></i> HTML و CSS</div>
                 <div class="skill-item"><i class="bi bi-palette"></i> طراحی ساده سایت</div>
                 <div class="skill-item"><i class="bi bi-windows"></i> کار با ویندوز و نرم‌افزارهای کاربردی</div>
                 <div class="skill-item"><i class="bi bi-image"></i> فتوشاپ مقدماتی</div>
             `;
-            // Contacts
             document.getElementById('contact-list').innerHTML = `
                 <a href="mailto:khodewsinaw@gmail.com" target="_blank" class="contact-glass">
                     <i class="bi bi-envelope"></i>
@@ -684,14 +661,9 @@
                     <span>تلگرام</span>
                 </a>
             `;
-            // Fun fact
             funFactElem.textContent = "جالب بدونی: " + funFacts[funFactIndex];
         }
     });
     </script>
 </body>
 </html>
-
-</body>
-</html>
-

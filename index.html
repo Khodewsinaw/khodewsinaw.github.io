@@ -51,20 +51,6 @@
             from { opacity: 0; transform: translateY(-40px);}
             to { opacity: 1; transform: translateY(0);}
         }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 4px 16px #6366f133;
-            margin-bottom: 1rem;
-            background: #fff;
-            transition: transform 0.3s;
-        }
-        .profile-img:hover {
-            transform: scale(1.07) rotate(-3deg);
-        }
         .header-bg h1 {
             font-size:2.3rem;
             font-weight:bold;
@@ -97,24 +83,98 @@
             80% { transform: rotate(-5deg);}
             100% { transform: rotate(0deg);}
         }
-        .theme-toggle {
+        .theme-toggle, .lang-toggle {
             position: absolute;
             top: 1.5rem;
-            right: 2rem;
-            background: #fff;
-            color: #6366f1;
-            border: none;
+            background: rgba(255,255,255,0.7);
+            border: 1.5px solid #e0e7ff;
             border-radius: 50%;
             width: 44px;
             height: 44px;
             font-size: 1.5rem;
-            box-shadow: 0 2px 8px #6366f133;
+            box-shadow: 0 2px 12px #6366f133;
             cursor: pointer;
-            transition: background 0.3s, color 0.3s;
+            transition: 
+                background 0.3s, 
+                color 0.3s, 
+                box-shadow 0.3s, 
+                border 0.3s, 
+                backdrop-filter 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
         }
-        body.dark .theme-toggle {
-            background: #334155;
+        .theme-toggle {
+            right: 2rem;
+        }
+        .lang-toggle {
+            right: 4.5rem;
+        }
+        .theme-toggle:active,
+        .lang-toggle:active,
+        .theme-toggle:focus,
+        .lang-toggle:focus,
+        .theme-toggle:hover,
+        .lang-toggle:hover {
+            background: rgba(99,102,241,0.18);
+            border: 1.5px solid #6366f1;
+            box-shadow: 0 4px 24px #6366f155;
+            outline: none;
+        }
+        body.dark .theme-toggle,
+        body.dark .lang-toggle {
+            background: rgba(30,41,59,0.7);
             color: #facc15;
+            border: 1.5px solid #334155;
+        }
+        body.dark .theme-toggle:active,
+        body.dark .lang-toggle:active,
+        body.dark .theme-toggle:focus,
+        body.dark .lang-toggle:focus,
+        body.dark .theme-toggle:hover,
+        body.dark .lang-toggle:hover {
+            background: rgba(250,204,21,0.13);
+            border: 1.5px solid #facc15;
+            box-shadow: 0 4px 24px #facc1555;
+        }
+        /* آیکون شب و روز */
+        .theme-toggle .icon-moon,
+        .theme-toggle .icon-sun {
+            font-size: 1.6rem;
+            position: absolute;
+            left: 0; right: 0; top: 0; bottom: 0;
+            margin: auto;
+            transition: opacity 0.4s, transform 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+            opacity: 1;
+            pointer-events: none;
+        }
+        .theme-toggle .icon-sun {
+            opacity: 0;
+            transform: scale(0.2) rotate(-90deg);
+        }
+        body.dark .theme-toggle .icon-moon {
+            opacity: 0;
+            transform: scale(0.2) rotate(90deg);
+        }
+        body.dark .theme-toggle .icon-sun {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        /* آیکون ترنسلیت */
+        .lang-toggle .icon-translate {
+            font-size: 1.5rem;
+            color: #6366f1;
+            animation: lang-rotate 2s infinite linear;
+            pointer-events: none;
+        }
+        body.dark .lang-toggle .icon-translate {
+            color: #facc15;
+        }
+        @keyframes lang-rotate {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
         }
         .glass {
             background: rgba(255,255,255,0.85);
@@ -212,11 +272,31 @@
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 8px 32px #6366f1aa;
         }
-        .contact-glass i {
+        .contact-glass i, .contact-glass img {
             font-size: 1.3rem;
-            transition: color 0.3s;
+            transition: color 0.3s, filter 0.3s;
+            vertical-align: middle;
         }
-        .contact-glass:hover i {
+        .contact-glass img {
+            width: 1.3rem;
+            height: 1.3rem;
+            object-fit: contain;
+            margin-left: 0.1rem;
+        }
+        /* رنگی کردن آیکون‌ها */
+        .contact-glass .bi-instagram {
+            color: #E4405F;
+        }
+        .contact-glass .bi-telegram {
+            color: #229ED9;
+        }
+        .contact-glass .bi-envelope {
+            color: #EA4335;
+        }
+        .contact-glass:hover .bi-instagram,
+        .contact-glass:hover .bi-telegram,
+        .contact-glass:hover .bi-envelope {
+            filter: brightness(1.2) drop-shadow(0 0 4px #fff);
             color: #fff;
         }
         blockquote {
@@ -247,6 +327,7 @@
             gap: 0.7rem;
             font-weight: bold;
             animation: fadeIn 1.2s;
+            min-height: 2.5rem;
         }
         body.dark .fun-fact {
             background: linear-gradient(90deg,#334155 10%,#6366f1 100%);
@@ -259,7 +340,6 @@
         body.dark .fun-fact i {
             color: #facc15;
         }
-        /* ترمینال نمایشی */
         .terminal {
             background: #1e293b;
             color: #38bdf8;
@@ -324,8 +404,8 @@
             .fun-fact { font-size: 0.95rem; padding: 0.7rem 1rem;}
             .terminal { font-size: 0.95rem; padding: 1rem 0.5rem;}
             .theme-toggle { right: 1rem; top: 1rem;}
+            .lang-toggle { right: 4.5rem; top: 1rem;}
         }
-        /* افکت تایپ */
         .typed-text {
             display: inline-block;
             border-left: 2px solid #6366f1;
@@ -347,20 +427,23 @@
 </head>
 <body>
     <div class="parallax-bg"></div>
-    <!-- هدر جدید با بک‌گراند و اسم انگلیسی -->
     <div class="header-bg" data-animate>
-        <button class="theme-toggle" id="themeBtn" title="تغییر حالت شب/روز"><i class="bi bi-moon-stars"></i></button>
+        <button class="theme-toggle" id="themeBtn" title="تغییر حالت شب/روز">
+            <i class="bi bi-moon-stars icon-moon"></i>
+            <i class="bi bi-brightness-high icon-sun"></i>
+        </button>
+        <button class="lang-toggle" id="langBtn" title="Change Language">
+            <i class="bi bi-translate icon-translate"></i>
+        </button>
         <span class="wave">👋</span>
-        <img src="https://avatars.githubusercontent.com/u/11111111?v=4" alt="Sina Sohrabi" class="profile-img">
-        <span class="en-name">Sina Sohrabi</span>
-        <h1>Sina Sohrabi</h1>
-        <span style="font-size:1.1rem;">دانشجوی ریاضیات و کاربردها | طراح وب</span>
+        <h1 style="margin-bottom:0.2rem;"><span class="en-name">Sina Sohrabi</span></h1>
+        <span style="font-size:1.1rem;" id="header-desc">دانشجوی ریاضیات و کاربردها | طراح وب</span>
     </div>
 
     <!-- معرفی -->
     <section class="glass" data-animate>
-        <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">👋 سلام!</h2>
-        <p>من <span style="color:#6366f1;font-weight:bold;">Sina Sohrabi</span> هستم.</p>
+        <h2 id="hello-title" style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">👋 سلام!</h2>
+        <p id="hello-desc">من <span style="color:#6366f1;font-weight:bold;">Sina Sohrabi</span> هستم.</p>
         <p style="color:#555;">
             <span id="typed" class="typed-text"></span>
         </p>
@@ -369,7 +452,7 @@
     <!-- فکت جالب -->
     <div class="fun-fact" data-animate>
         <i class="bi bi-lightbulb"></i>
-        <span>جالب بدونی: عدد پی تا 100 تریلیون رقم محاسبه شده!</span>
+        <span id="fun-fact-text">جالب بدونی: عدد پی تا 100 تریلیون رقم محاسبه شده!</span>
     </div>
 
     <!-- ترمینال نمایشی -->
@@ -391,8 +474,8 @@
 
     <!-- مهارت‌ها با آیکون و افکت -->
     <section class="glass" data-animate>
-        <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">💼 مهارت‌ها</h2>
-        <div class="skills-list">
+        <h2 id="skills-title" style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">💼 مهارت‌ها</h2>
+        <div class="skills-list" id="skills-list">
             <div class="skill-item"><i class="bi bi-filetype-html"></i> HTML و CSS</div>
             <div class="skill-item"><i class="bi bi-palette"></i> طراحی ساده سایت</div>
             <div class="skill-item"><i class="bi bi-windows"></i> کار با ویندوز و نرم‌افزارهای کاربردی</div>
@@ -400,10 +483,18 @@
         </div>
     </section>
 
+    <!-- علایق -->
+    <section class="glass" data-animate>
+        <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">🎯 علایق</h2>
+        <ul style="font-size:1.1rem; margin:0; padding-right:1.2rem;">
+            <li>هوش مصنوعی</li>
+        </ul>
+    </section>
+
     <!-- راه‌های ارتباطی با آیکون و افکت شیشه‌ای -->
     <section class="glass" data-animate>
-        <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">📌 راه‌های ارتباطی</h2>
-        <div class="contact-list">
+        <h2 id="contact-title" style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">📌 راه‌های ارتباطی</h2>
+        <div class="contact-list" id="contact-list">
             <a href="mailto:khodewsinaw@gmail.com" target="_blank" class="contact-glass">
                 <i class="bi bi-envelope"></i>
                 <span>ایمیل</span>
@@ -421,14 +512,14 @@
 
     <!-- نقل‌قول مورد علاقه -->
     <section class="glass" data-animate>
-        <h2 style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">🧠 نقل‌قول مورد علاقه‌م:</h2>
-        <blockquote>
+        <h2 id="quote-title" style="font-size:1.3rem;font-weight:bold;margin-bottom:0.7rem;">🧠 نقل‌قول مورد علاقه‌م:</h2>
+        <blockquote id="quote-block">
             «تقدیر این بوده، نه دست من نیست»
         </blockquote>
     </section>
 
     <!-- فوتر -->
-    <footer>
+    <footer id="footer">
         © 2025 Khodewsinaw | همه حقوق محفوظ است
     </footer>
 
@@ -467,11 +558,10 @@
     }
     typeEffect();
 
-    // حالت شب و روز
+    // حالت شب و روز با آیکون تمیز و انیمیشن
     const themeBtn = document.getElementById('themeBtn');
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark');
-        themeBtn.innerHTML = document.body.classList.contains('dark') ? '<i class="bi bi-brightness-high"></i>' : '<i class="bi bi-moon-stars"></i>';
     });
 
     // افکت پارالاکس
@@ -491,6 +581,113 @@
     }
     window.addEventListener('scroll', animateSections);
     window.addEventListener('load', animateSections);
+
+    // فکت جالب متغیر و تغییر هر 10 ثانیه
+    const funFacts = [
+        "عدد پی تا 100 تریلیون رقم محاسبه شده!",
+        "اولین وب‌سایت دنیا هنوز آنلاین است.",
+        "هر روز بیش از 500 هزار وب‌سایت جدید ساخته می‌شود.",
+        "اولین ایمیل دنیا در سال 1971 ارسال شد.",
+        "گوگل در ابتدا با نام BackRub شروع به کار کرد.",
+        "هر دقیقه بیش از 500 ساعت ویدیو در یوتیوب آپلود می‌شود.",
+        "برنامه‌نویسی یکی از شغل‌های آینده‌دار دنیاست.",
+        "اولین کامپیوتر دنیا 30 تن وزن داشت!",
+        "هر ثانیه بیش از 40 هزار جستجو در گوگل انجام می‌شود.",
+        "زبان جاوااسکریپت فقط در 10 روز ساخته شد.",
+        "هوش مصنوعی می‌تواند متن، تصویر و حتی موسیقی تولید کند.",
+        "در سال 2023، بیش از 5 میلیارد نفر به اینترنت دسترسی داشتند.",
+        "هر روز میلیاردها پیام در پیام‌رسان‌ها رد و بدل می‌شود.",
+        "بزرگ‌ترین دیتاسنتر جهان در چین قرار دارد.",
+        "اولین گوشی موبایل وزنی بیش از 1 کیلوگرم داشت."
+    ];
+    let funFactIndex = 0;
+    const funFactElem = document.getElementById('fun-fact-text');
+    setInterval(() => {
+        funFactIndex = (funFactIndex + 1) % funFacts.length;
+        funFactElem.textContent = "جالب بدونی: " + funFacts[funFactIndex];
+    }, 10000);
+
+    // دکمه تغییر زبان
+    const langBtn = document.getElementById('langBtn');
+    let isEnglish = false;
+    langBtn.addEventListener('click', () => {
+        isEnglish = !isEnglish;
+        if(isEnglish) {
+            document.documentElement.lang = "en";
+            document.body.dir = "ltr";
+            document.getElementById('header-desc').textContent = "Mathematics Student | Web Designer";
+            document.getElementById('hello-title').textContent = "👋 Hello!";
+            document.getElementById('hello-desc').innerHTML = 'I am <span style="color:#6366f1;font-weight:bold;">Sina Sohrabi</span>.';
+            document.getElementById('skills-title').textContent = "💼 Skills";
+            document.querySelector('section.glass:nth-of-type(3) h2').textContent = "🎯 Interests";
+            document.querySelector('section.glass:nth-of-type(3) ul').innerHTML = "<li>Artificial Intelligence</li>";
+            document.getElementById('contact-title').textContent = "📌 Contact";
+            document.getElementById('quote-title').textContent = "🧠 My Favorite Quote:";
+            document.getElementById('quote-block').textContent = '"Destiny was like this, it was not in my hands."';
+            document.getElementById('footer').textContent = "© 2025 Khodewsinaw | All rights reserved";
+            // Skills
+            document.getElementById('skills-list').innerHTML = `
+                <div class="skill-item"><i class="bi bi-filetype-html"></i> HTML & CSS</div>
+                <div class="skill-item"><i class="bi bi-palette"></i> Simple Web Design</div>
+                <div class="skill-item"><i class="bi bi-windows"></i> Windows & Apps</div>
+                <div class="skill-item"><i class="bi bi-image"></i> Basic Photoshop</div>
+            `;
+            // Contacts
+            document.getElementById('contact-list').innerHTML = `
+                <a href="mailto:khodewsinaw@gmail.com" target="_blank" class="contact-glass">
+                    <i class="bi bi-envelope"></i>
+                    <span>Email</span>
+                </a>
+                <a href="https://instagram.com/sinaa.sohrabi" target="_blank" class="contact-glass">
+                    <i class="bi bi-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://t.me/khodewsinaw" target="_blank" class="contact-glass">
+                    <i class="bi bi-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+            `;
+            // Fun fact
+            funFactElem.textContent = "Did you know: " + funFacts[funFactIndex];
+        } else {
+            document.documentElement.lang = "fa";
+            document.body.dir = "rtl";
+            document.getElementById('header-desc').textContent = "دانشجوی ریاضیات و کاربردها | طراح وب";
+            document.getElementById('hello-title').textContent = "👋 سلام!";
+            document.getElementById('hello-desc').innerHTML = 'من <span style="color:#6366f1;font-weight:bold;">Sina Sohrabi</span> هستم.';
+            document.getElementById('skills-title').textContent = "💼 مهارت‌ها";
+            document.querySelector('section.glass:nth-of-type(3) h2').textContent = "🎯 علایق";
+            document.querySelector('section.glass:nth-of-type(3) ul').innerHTML = "<li>هوش مصنوعی</li>";
+            document.getElementById('contact-title').textContent = "📌 راه‌های ارتباطی";
+            document.getElementById('quote-title').textContent = "🧠 نقل‌قول مورد علاقه‌م:";
+            document.getElementById('quote-block').textContent = "«تقدیر این بوده، نه دست من نیست»";
+            document.getElementById('footer').textContent = "© 2025 Khodewsinaw | همه حقوق محفوظ است";
+            // Skills
+            document.getElementById('skills-list').innerHTML = `
+                <div class="skill-item"><i class="bi bi-filetype-html"></i> HTML و CSS</div>
+                <div class="skill-item"><i class="bi bi-palette"></i> طراحی ساده سایت</div>
+                <div class="skill-item"><i class="bi bi-windows"></i> کار با ویندوز و نرم‌افزارهای کاربردی</div>
+                <div class="skill-item"><i class="bi bi-image"></i> فتوشاپ مقدماتی</div>
+            `;
+            // Contacts
+            document.getElementById('contact-list').innerHTML = `
+                <a href="mailto:khodewsinaw@gmail.com" target="_blank" class="contact-glass">
+                    <i class="bi bi-envelope"></i>
+                    <span>ایمیل</span>
+                </a>
+                <a href="https://instagram.com/sinaa.sohrabi" target="_blank" class="contact-glass">
+                    <i class="bi bi-instagram"></i>
+                    <span>اینستاگرام</span>
+                </a>
+                <a href="https://t.me/khodewsinaw" target="_blank" class="contact-glass">
+                    <i class="bi bi-telegram"></i>
+                    <span>تلگرام</span>
+                </a>
+            `;
+            // Fun fact
+            funFactElem.textContent = "جالب بدونی: " + funFacts[funFactIndex];
+        }
+    });
     </script>
 </body>
 </html>
